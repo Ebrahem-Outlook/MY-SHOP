@@ -1,4 +1,6 @@
-﻿namespace My_Shop.Domain.Core.BaseType;
+﻿using My_Shop.Domain.Core.Events;
+
+namespace My_Shop.Domain.Core.BaseType;
 
 public abstract class AggregateRoot : Entity
 {
@@ -9,4 +11,8 @@ public abstract class AggregateRoot : Entity
     private readonly List<IDomainEvent> domainEvents = new List<IDomainEvent>();
 
     public IReadOnlyCollection<IDomainEvent> DomainEvent => domainEvents.AsReadOnly();
+
+    public void Raise(IDomainEvent @event) => domainEvents.Add(@event);
+
+    public void Clear() => domainEvents.Clear();
 }

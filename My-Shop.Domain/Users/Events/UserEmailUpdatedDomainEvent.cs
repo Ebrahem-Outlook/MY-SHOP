@@ -5,4 +5,4 @@ namespace My_Shop.Domain.Users.Events;
 public sealed record UserEmailUpdatedDomainEvent(
     Guid UserId,
     string Email,
-    DateTime UpdatedOn) : DomainEvent;
+    DateTime? UpdatedOn) : DomainEvent;

@@ -6,4 +6,4 @@ public sealed record UserUpdatedDomainEvent(
     Guid UserId,
     string FirstName,
     string LastName,
-    DateTime UpdatedOn) : DomainEvent;
+    DateTime? UpdatedOn) : DomainEvent;
