@@ -8,4 +8,4 @@ public sealed record CreateUserCommand(
     string FirstName, 
     string LastName, 
     string Email,
-    string Password) : ICommand<User>;
+    string Password) : ICommand<string>;
