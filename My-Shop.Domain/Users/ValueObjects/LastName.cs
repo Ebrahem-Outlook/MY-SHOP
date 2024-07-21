@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using My_Shop.Domain.Core.BaseType;
 
-namespace My_Shop.Domain.Users.ValueObjects
+namespace My_Shop.Domain.Users.ValueObjects;
+
+public sealed class LastName : ValueObject
 {
-    internal class LastName
+    private LastName(string value) => Value = value;
+
+    public string Value { get; }
+
+    public static LastName Create(string value)
     {
+        return new LastName(value);
+    }
+    
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Value;
     }
 }

@@ -30,7 +30,7 @@ public sealed class User : AggregateRoot
     {
         User user = new(firstName, lastName, email, password);
 
-        user.Raise(new UserCreatedDomainEvent(user.Id, user.FirstName, user.LastName, user.Email, user.Password, user.CreatedOn));
+        user.Raise(new UserCreatedDomainEvent(user));
 
         return user;
     }

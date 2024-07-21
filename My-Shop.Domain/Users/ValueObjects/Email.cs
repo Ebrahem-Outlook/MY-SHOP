@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using My_Shop.Domain.Core.BaseType;
 
-namespace My_Shop.Domain.Users.ValueObjects
+namespace My_Shop.Domain.Users.ValueObjects;
+
+public sealed class Email : ValueObject
 {
-    internal class Email
+    private Email(string value) => Value = value;
+
+    public string Value { get; }
+
+    public static Email Create(string value)
     {
+        return new Email(value);
+    }
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Value;
     }
 }
