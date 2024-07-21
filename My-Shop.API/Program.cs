@@ -1,4 +1,7 @@
 
+using My_Shop.Application;
+using My_Shop.Infrastructure;
+
 namespace My_Shop.API
 {
     public class Program
@@ -7,10 +10,14 @@ namespace My_Shop.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Configuration.
+            var configuration = builder.Configuration;
 
+            // Add services to the container.
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddApplication();
+            builder.Services.AddInfrastructure(configuration);
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
