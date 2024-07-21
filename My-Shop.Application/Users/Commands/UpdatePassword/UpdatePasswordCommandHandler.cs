@@ -5,7 +5,7 @@ using My_Shop.Domain.Users;
 
 namespace My_Shop.Application.Users.Commands.UpdatePassword;
 
-internal sealed class UpdatePasswordCommandHandler : ICommandHandler<UpdatePasswordCommand, Result<UserDTO>>
+internal sealed class UpdatePasswordCommandHandler : ICommandHandler<UpdatePasswordCommand, Result<User>>
 {
     private readonly IUserRepository _userRepository;
 
@@ -14,7 +14,7 @@ internal sealed class UpdatePasswordCommandHandler : ICommandHandler<UpdatePassw
         _userRepository = userRepository;
     }
 
-    public Task<Result<UserDTO>> Handle(UpdatePasswordCommand request, CancellationToken cancellationToken)
+    public Task<Result<User>> Handle(UpdatePasswordCommand request, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

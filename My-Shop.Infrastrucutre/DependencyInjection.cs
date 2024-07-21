@@ -1,33 +1,49 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using My_Shop.Application.Core.Abstractions.Data;
-using My_Shop.Domain.Orders;
 using My_Shop.Domain.Products;
 using My_Shop.Domain.Users;
+using My_Shop.Infrastrucutre.Caching;
 using My_Shop.Infrastrucutre.Database;
 using My_Shop.Infrastrucutre.Repositories;
 
-namespace My_Shop.Infrastrucutre;
-
-public static class DependencyInjection
+namespace My_Shop.Infrastructure
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static class DependencyInjection
     {
-        string? connection = configuration.GetConnectionString("DefaultConnection");
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+            string? connection = configuration.GetConnectionString("DefaultConnection");
 
-        services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
 
-        services.AddScoped<IDbContext>(options => options.GetRequiredService<AppDbContext>());
+            services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());
 
-        services.AddScoped<IUnitOfWork>(options => options.GetRequiredService<AppDbContext>());
+            services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AppDbContext>());
 
-        services.AddScoped<IUserRepository, UserRepository>();
+            services.AddMemoryCache();
 
-        services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<UserRepository>();
 
-        services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IUserRepository>(sp =>
+            {
+                var dbContext = sp.GetRequiredService<UserRepository>();
+                var memoryCache = sp.GetRequiredService<IMemoryCache>();
+                return new CachedUserRepository(dbContext, memoryCache);
+            });
 
-        return services;
+            services.AddScoped<IProductRepository>(sp =>
+            {
+                var dbContext = sp.GetRequiredService<ProductRepository>();
+                var memoryCache = sp.GetRequiredService<IMemoryCache>();
+                return new CachedProductRepository(dbContext, memoryCache);
+            });
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+            return services;
+        }
     }
 }

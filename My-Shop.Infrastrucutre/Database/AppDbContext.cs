@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using My_Shop.Application.Core.Abstractions.Data;
 using My_Shop.Domain.Core.BaseType;
 using System.Data;

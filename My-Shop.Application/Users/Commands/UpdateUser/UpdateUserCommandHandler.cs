@@ -5,7 +5,7 @@ using My_Shop.Domain.Users;
 
 namespace My_Shop.Application.Users.Commands.UpdateUser;
 
-internal sealed class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Result<UserDTO>>
+internal sealed class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Result<User>>
 {
     private readonly IUserRepository _userRepository;
 
@@ -14,7 +14,7 @@ internal sealed class UpdateUserCommandHandler : ICommandHandler<UpdateUserComma
         _userRepository = userRepository;
     }
 
-    public Task<Result<UserDTO>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    public Task<Result<User>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

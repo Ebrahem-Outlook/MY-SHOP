@@ -1,4 +1,6 @@
-﻿namespace My_Shop.Domain.Users.ValueObjects;
+﻿using My_Shop.Domain.Core.BaseType;
+
+namespace My_Shop.Domain.Users.ValueObjects;
 
 public sealed class Password : ValueObject
 {
@@ -11,4 +13,8 @@ public sealed class Password : ValueObject
         return new Password(value);
     }
 
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        throw new NotImplementedException();
+    }
 }
