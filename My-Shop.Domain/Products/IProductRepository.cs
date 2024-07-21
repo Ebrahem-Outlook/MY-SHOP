@@ -8,7 +8,7 @@ public interface IProductRepository
     void Delete(Product product);
 
     // Queries.
-    Task<IQueryable<Product>> GetAllAsync(CancellationToken cancellationToken = default);
-    Task<Product> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
-    Task<IQueryable<Product>> GetByNameAsync(string name, CancellationToken cancellationToken = default);
+    Task<List<Product>?> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<List<Product>?> GetByNameAsync(string name, CancellationToken cancellationToken = default);
 }
