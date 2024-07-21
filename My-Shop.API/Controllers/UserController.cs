@@ -5,6 +5,9 @@ using My_Shop.Application.Users.Commands.CreateUser;
 using My_Shop.Application.Users.Commands.UpdateEmail;
 using My_Shop.Application.Users.Commands.UpdateUser;
 using My_Shop.Application.Users.Queries.GetAllUsers;
+using My_Shop.Application.Users.Queries.GetByEmail;
+using My_Shop.Application.Users.Queries.GetById;
+using My_Shop.Application.Users.Queries.GetByName;
 
 namespace My_Shop.API.Controllers;
 
@@ -47,7 +50,13 @@ public sealed class UserController(ISender sender) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll() => Ok(await sender.Send(new GetAllUsersQuery()));
 
-    public async
+    [HttpGet("id")]
+    public async Task<IActionResult> GetById(Guid id) => Ok(await sender.Send(new GetByIdQuery(id)));
+
+    public async Task<IActionResult> GetByEmail(string email) => Ok(await sender.Send(new GetByEmailQuery(email)));
+
+    [HttpGet("name")]
+    public async Task<IActionResult> GetByName(string name) => Ok(await sender.Send(new GetByNameQuery(name)));
 }
 
 
