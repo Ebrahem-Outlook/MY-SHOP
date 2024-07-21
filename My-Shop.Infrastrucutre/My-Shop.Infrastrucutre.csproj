@@ -11,4 +11,9 @@
     <ProjectReference Include="..\My-Shop.Application\My-Shop.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Database\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

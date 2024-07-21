@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Notifications\" />
-    <Folder Include="Orders\" />
   </ItemGroup>
 
   <ItemGroup>
