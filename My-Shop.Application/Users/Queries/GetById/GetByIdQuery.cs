@@ -2,6 +2,6 @@
 using My_Shop.Domain.Core.BaseType.Result;
 using My_Shop.Domain.Users;
 
-namespace My_Shop.Application.Users.Queries.GetByEmail;
+namespace My_Shop.Application.Users.Queries.GetById;
 
-public sealed record GetByEmailQuery(string Email) : IQuery<Result<User>>;
+public sealed record GetByIdQuery(Guid UserId) : IQuery<Result<User>>;
