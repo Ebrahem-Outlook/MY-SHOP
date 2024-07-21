@@ -30,10 +30,6 @@
     <Folder Include="Products\Commands\" />
     <Folder Include="Products\Events\" />
     <Folder Include="Products\Queries\" />
-    <Folder Include="Users\Commands\DeleteUser\" />
-    <Folder Include="Users\Commands\UpdatePassword\" />
-    <Folder Include="Users\Commands\UpdateEmail\" />
-    <Folder Include="Users\Commands\UpdateUser\" />
     <Folder Include="Users\Events\EmailUpdated\" />
     <Folder Include="Users\Events\PasswordUpdated\" />
     <Folder Include="Users\Events\UserDeleted\" />
