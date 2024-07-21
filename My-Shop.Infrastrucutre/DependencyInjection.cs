@@ -15,7 +15,7 @@ namespace My_Shop.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            string? connection = configuration.GetConnectionString("DefaultConnection");
+            string? connection = configuration.GetConnectionString("Local-SqlServer");
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
 
