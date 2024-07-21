@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using My_Shop.Domain.Core.BaseType.Result;
 
 namespace My_Shop.Application.Core.Behaviors;
 
-internal sealed class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public sealed class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
-    where TResponse : class
+    where TResponse : Result
 {
     private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
 
@@ -16,6 +17,11 @@ internal sealed class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<T
         _logger.LogInformation("Starting request {@RequestName}, {@DateTime}", typeof(TRequest).Name, DateTime.UtcNow);
 
         var response = await next();
+
+        if (response.IsFailure)
+        {
+            _logger.LogError("Failure Request {@RequestName}, {@DateTime}", typeof(TRequest).Name, DateTime.UtcNow);
+        }
 
         _logger.LogInformation("Completed request {@RequestName}, {@DateTime}", typeof(TRequest).Name, DateTime.UtcNow);
 
