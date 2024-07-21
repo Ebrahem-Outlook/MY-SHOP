@@ -11,8 +11,8 @@ using My_Shop.Application.Users.Queries.GetByName;
 
 namespace My_Shop.API.Controllers;
 
-[ApiController]
 [Route("api/[Controller]")]
+[ApiController]
 public sealed class UserController(ISender sender) : ControllerBase
 {
 
@@ -37,14 +37,14 @@ public sealed class UserController(ISender sender) : ControllerBase
     public async Task<IActionResult> UpdateEmail(UpdateEmailRequest request) =>
         Ok(await sender.Send(
             new UpdateEmailCommand(
-                request.UserId, 
+                request.UserId,
                 request.Email)));
 
     [HttpPut("password")]
     public async Task<IActionResult> UpdatePassword(UpdatePasswordRequest request) =>
         Ok(await sender.Send(
             new UpdateEmailCommand(
-                request.UserId, 
+                request.UserId,
                 request.Password)));
 
     [HttpGet]
@@ -53,10 +53,9 @@ public sealed class UserController(ISender sender) : ControllerBase
     [HttpGet("id")]
     public async Task<IActionResult> GetById(Guid id) => Ok(await sender.Send(new GetByIdQuery(id)));
 
+    [HttpGet("email")]
     public async Task<IActionResult> GetByEmail(string email) => Ok(await sender.Send(new GetByEmailQuery(email)));
 
     [HttpGet("name")]
     public async Task<IActionResult> GetByName(string name) => Ok(await sender.Send(new GetByNameQuery(name)));
 }
-
-

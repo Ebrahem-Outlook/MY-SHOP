@@ -1,7 +1,5 @@
-﻿using Microsoft.VisualBasic;
-using My_Shop.Application.Core.Abstractions.Data;
+﻿using My_Shop.Application.Core.Abstractions.Data;
 using My_Shop.Application.Core.Abstractions.Messaging;
-using My_Shop.Domain.Core.BaseType.Result;
 using My_Shop.Domain.Users;
 
 namespace My_Shop.Application.Users.Commands.CreateUser;
@@ -10,7 +8,7 @@ internal sealed class CreateUserCommandHandler : ICommandHandler<CreateUserComma
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
-
+      
     public CreateUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
