@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.9.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
   </ItemGroup>
 
@@ -16,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Abstractions\Messaging\" />
+    <Folder Include="Users\Commands\" />
+    <Folder Include="Users\Events\" />
+    <Folder Include="Users\Queries\" />
   </ItemGroup>
 
 </Project>
