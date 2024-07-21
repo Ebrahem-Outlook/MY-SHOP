@@ -31,7 +31,6 @@
     <Folder Include="Products\Events\" />
     <Folder Include="Products\Queries\" />
     <Folder Include="Users\Queries\GetById\" />
-    <Folder Include="Users\Queries\GetByEmail\" />
     <Folder Include="Users\Queries\GetByName\" />
   </ItemGroup>
 
